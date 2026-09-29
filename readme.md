@@ -1,0 +1,1 @@
+![architecture](./readme.assets/architecture.png)
