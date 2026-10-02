@@ -166,7 +166,7 @@ Configured DNS and DHCP services on **DC01** to provide name resolution and cent
 
 
 
-# **5.. Group Policy Configuration**
+# **5. Group Policy Configuration**
 
 Group Policy was configured in the **corp.lab** domain to demonstrate centralized management of both domain users and domain computers.
 
