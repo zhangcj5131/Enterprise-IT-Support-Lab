@@ -1,663 +1,163 @@
 ![architecture](./readme.assets/architecture.png)
 
-# Northstar Technologies — IT Support Lab Implementation Roadmap
+# **1. Project Overview**
 
-## Project Goal
+The **Northstar Enterprise IT Support Lab** is a hands-on enterprise IT environment designed to simulate common infrastructure, system administration, and Help Desk operations in a small business environment.
 
-Build a realistic small-business Windows IT environment for hands-on **Help Desk / IT Support** practice.
+The lab is built around a Windows Server 2022 Domain Controller and two Windows 11 Pro client workstations running as virtual machines in **Hyper-V**.
 
-The completed lab will integrate:
+The environment combines traditional on-premises Windows infrastructure with Microsoft cloud services.
 
+The project covers:
+
+- Hyper-V virtualization
 - Windows Server 2022
-- Active Directory Domain Services (AD DS)
-- DNS
-- DHCP
+- Active Directory Domain Services
+- DNS and DHCP
 - Group Policy
-- File Server and NTFS/Share permissions
-- Windows 11 domain-joined workstation
+- File Server and NTFS permissions
 - Microsoft Entra ID
-- Microsoft Entra Connect / Hybrid Identity
 - Microsoft 365
+- Entra Connect and hybrid identity
 - Microsoft Intune
-- Windows 11 Entra-joined and cloud-managed workstation
-- Common IT support and troubleshooting scenarios
+- User onboarding and offboarding
+- IT Support troubleshooting
 
-The purpose of the project is not to build a large enterprise infrastructure. The goal is to create a compact environment that demonstrates the technologies and troubleshooting skills commonly required in **Help Desk / IT Support / Junior System Administration** roles.
+The initial Hyper-V environment contains three virtual machines:
 
----
-
-# 1. Hyper-V Lab Environment
-
-## Objective
-
-Build the virtualization and networking foundation for the entire project.
-
-## Environment
-
-Three virtual machines are used:
-
-| Machine  | Operating System    | Primary Purpose              |
-| -------- | ------------------- | ---------------------------- |
-| DC01     | Windows Server 2022 | Server infrastructure        |
-| CLIENT01 | Windows 11 Pro      | On-premises domain client    |
-| CLIENT02 | Windows 11 Pro      | Cloud-managed / Entra client |
-
-Network:
-
-```text
-Subnet:          192.168.88.0/24
-Gateway:         192.168.88.1
-
-DC01:            192.168.88.12
-CLIENT01:        192.168.88.13
-CLIENT02:        192.168.88.14
 ```
-
-All machines are connected through a Hyper-V External Virtual Switch.
-
-DC01 uses a stable static IP and fixed virtual MAC address because it will provide core network and identity services.
-
-CLIENT01 and CLIENT02 also use predictable addresses to simplify lab administration and troubleshooting.
-
-## Completion Goal
-
-At the end of this chapter:
-
-- DC01 is operational.
-- CLIENT01 is operational.
-- CLIENT02 is operational.
-- All machines have network connectivity.
-- Internet connectivity works.
-- Remote administration works where required.
-
-**Current status: COMPLETED**
-
----
-
-# 2. Active Directory Domain Services and DNS
-
-## Objective
-
-Build the core on-premises Windows domain environment.
-
-DC01 will become the Domain Controller and DNS server for the lab.
-
-## Planned Environment
-
-```text
+DC01
+Windows Server 2022
+IP: 192.168.88.12
+Role: Domain Controller / DNS Server
 Domain: corp.lab
 
-DC01
-├── Active Directory Domain Services
-└── DNS Server
-```
-
-## Active Directory Structure
-
-Create a realistic organizational structure for a small company.
-
-Example:
-
-```text
-corp.lab
-│
-├── Users
-│   ├── IT
-│   ├── HR
-│   ├── Finance
-│   └── General
-│
-├── Computers
-│   ├── Workstations
-│   └── Servers
-│
-└── Groups
-    ├── IT Groups
-    ├── HR Groups
-    ├── Finance Groups
-    └── General Groups
-```
-
-Create representative:
-
-- Organizational Units (OUs)
-- User accounts
-- Security groups
-- Administrative accounts
-- Computer objects
-
-Practice basic Active Directory administration including:
-
-- Creating and disabling users
-- Resetting passwords
-- Unlocking accounts
-- Managing group membership
-- Moving objects between OUs
-- Understanding authentication and authorization
-
-## DNS
-
-Configure and verify AD-integrated DNS.
-
-Practice:
-
-- Forward lookup
-- A records
-- CNAME records
-- AD-related DNS records
-- Internal hostname resolution
-- Basic DNS troubleshooting
-
-## CLIENT01 Domain Join
-
-CLIENT01 will be configured to use DC01 for DNS and then joined to:
-
-```text
-corp.lab
-```
-
-CLIENT01 becomes the primary traditional enterprise workstation.
-
-Verify:
-
-- Domain Join
-- Domain user login
-- Domain authentication
-- DNS resolution
-- Communication with DC01
-
-## Completion Goal
-
-At the end of this chapter:
-
-```text
-DC01
-   ↓
-Active Directory + DNS
-   ↓
-corp.lab
-   ↓
 CLIENT01
-Domain Joined
-```
-
-A functioning Windows domain environment exists.
-
----
-
-# 3. DHCP and Windows Network Services
-
-## Objective
-
-Add centralized IP address management and practice common Windows network administration tasks.
-
-## DHCP Server
-
-Install and configure DHCP on DC01.
-
-Create a DHCP scope for the lab network.
-
-Practice:
-
-- DHCP Scope
-- Address Pool
-- Exclusion Range
-- Lease
-- Reservation
-- DHCP Options
-- Default Gateway
-- DNS Server assignment
-
-Use CLIENT01 to verify DHCP operation and practice common DHCP troubleshooting scenarios.
-
-## Important Design Note
-
-DC01 remains statically addressed.
-
-Infrastructure servers should not depend on dynamically assigned addresses.
-
-## Completion Goal
-
-DC01 provides centralized:
-
-```text
-AD DS
-DNS
-DHCP
-```
-
-The lab now contains the basic infrastructure services commonly found in a Windows business network.
-
----
-
-# 4. Group Policy and File Server
-
-## Objective
-
-Add centralized workstation management and company file-sharing services.
-
-This chapter turns the basic domain into a more realistic business environment.
-
----
-
-## 4.1 Group Policy
-
-Create several practical Group Policy Objects (GPOs).
-
-Possible policies include:
-
-- Password/security settings
-- Desktop or workstation configuration
-- Windows settings
-- Drive mapping
-- Basic security restrictions
-- Windows Update-related configuration
-
-Practice:
-
-- Creating GPOs
-- Linking GPOs to OUs
-- User vs. Computer Configuration
-- Policy inheritance
-- `gpupdate`
-- `gpresult`
-- Troubleshooting policies that do not apply
-
-CLIENT01 will be the primary machine used to verify Group Policy behavior.
-
----
-
-## 4.2 File Server
-
-Configure shared company folders on DC01.
-
-Example:
-
-```text
-\\DC01\Shares
-
-├── IT
-├── HR
-├── Finance
-└── Public
-```
-
-Create department-based access using Active Directory security groups.
-
-Practice:
-
-- NTFS permissions
-- Share permissions
-- Group-based access
-- Least privilege
-- AGDLP-style permission management
-- Access troubleshooting
-
-Users from different departments should receive different access rights.
-
-## Completion Goal
-
-The on-premises environment now provides:
-
-```text
-DC01
-├── Active Directory
-├── DNS
-├── DHCP
-├── Group Policy
-└── File Server
-
-        ↓
-
-CLIENT01
-└── Domain-managed workstation
-```
-
-At this stage, the traditional on-premises Windows environment is essentially complete.
-
----
-
-# 5. Microsoft Entra ID and Microsoft 365
-
-## Objective
-
-Extend the on-premises identity environment into Microsoft's cloud services.
-
-This chapter introduces modern cloud identity and Microsoft 365 administration.
-
----
-
-## 5.1 Microsoft Entra ID
-
-Create and configure the Microsoft Entra ID environment.
-
-Practice:
-
-- Users
-- Groups
-- Roles
-- MFA
-- Licenses
-- Basic identity administration
-
----
-
-## 5.2 Microsoft 365
-
-Connect users to Microsoft 365 services.
-
-Practice basic administration involving:
-
-- Microsoft 365 user accounts
-- Licensing
-- Outlook / Exchange Online
-- Teams
-- OneDrive
-- Basic SharePoint access
-
-The focus is Help Desk-level administration rather than advanced Microsoft 365 engineering.
-
----
-
-## 5.3 Microsoft Entra Connect / Identity Synchronization
-
-Connect the on-premises Active Directory environment with Microsoft Entra ID.
-
-Target architecture:
-
-```text
-On-Premises AD
-     │
-     │ Microsoft Entra Connect
-     ↓
-Microsoft Entra ID
-     │
-     ↓
-Microsoft 365
-```
-
-Synchronize selected users and groups from:
-
-```text
-corp.lab
-```
-
-to Microsoft Entra ID.
-
-Practice understanding and troubleshooting:
-
-- On-premises users
-- Cloud-only users
-- Synced users
-- Synced groups
-- Identity synchronization
-- Licensing after synchronization
-
-## Completion Goal
-
-The project now contains a hybrid identity environment connecting traditional Active Directory with Microsoft's cloud identity platform.
-
----
-
-# 6. Microsoft Intune and CLIENT02
-
-## Objective
-
-Build a modern cloud-managed Windows endpoint.
-
-CLIENT02 will represent a workstation that is managed primarily through Microsoft cloud services rather than the traditional on-premises domain.
-
-## CLIENT02 Design
-
-CLIENT02 will be:
-
-```text
 Windows 11 Pro
-        ↓
-Microsoft Entra Joined
-        ↓
-Microsoft Intune Enrolled
-        ↓
-Cloud Managed
-```
-
-CLIENT02 will NOT be used as the primary traditional `corp.lab` domain workstation.
-
-CLIENT01 and CLIENT02 therefore represent two different endpoint-management models:
-
-```text
-CLIENT01
-On-Premises Domain Joined
-AD + GPO
+IP: 192.168.88.13
+Role: Traditional Active Directory domain workstation
+Domain: corp.lab
 
 CLIENT02
-Entra Joined
-Intune Managed
+Windows 11 Pro
+Role: Cloud identity and endpoint management workstation
+Planned use: Microsoft Entra ID / Intune
 ```
 
-## Intune Tasks
+**CLIENT01** is used primarily for traditional on-premises Active Directory administration, Group Policy, domain authentication, file permissions, and Help Desk scenarios.
 
-Practice:
+**CLIENT02** is reserved for later Microsoft Entra ID and Intune exercises, allowing the lab to demonstrate both traditional domain-managed and modern cloud-managed Windows endpoints.
 
-- Device enrollment
-- Device inventory
-- Configuration profiles
-- Compliance policies
-- Basic security policies
-- Application deployment
-- Remote management actions
+The overall architecture follows this model:
 
-Verify that CLIENT02 receives policies and applications from Intune.
+```
+Hyper-V
+   │
+   ├── DC01
+   │     └── Windows Server 2022
+   │           ├── Active Directory
+   │           ├── DNS / DHCP
+   │           ├── Group Policy
+   │           └── File Services
+   │
+   ├── CLIENT01
+   │     └── Windows 11 Pro
+   │           └── corp.lab Domain Joined
+   │
+   └── CLIENT02
+         └── Windows 11 Pro
+               └── Entra ID / Intune Lab
 
-## Completion Goal
-
-The lab now demonstrates both:
-
-**Traditional Windows management**
-
-```text
-AD → GPO → CLIENT01
+                     │
+                     ▼
+            Microsoft Cloud
+                     │
+                     ├── Entra ID
+                     ├── Microsoft 365
+                     ├── Entra Connect
+                     └── Intune
 ```
 
-and:
+The goal is not only to configure the technologies individually, but to build an integrated environment where common enterprise IT administration and troubleshooting scenarios can be practiced and documented.
 
-**Modern cloud endpoint management**
+------
 
-```text
-Entra ID → Intune → CLIENT02
-```
+# **2. Hyper-V Lab Environment**
 
----
+The first stage of the project establishes the virtualization environment used by the rest of the lab.
 
-# 7. IT Support and Troubleshooting Scenarios
+Hyper-V is used to create and manage three virtual machines:
 
-## Objective
+- **DC01** — Windows Server 2022
+- **CLIENT01** — Windows 11 Pro
+- **CLIENT02** — Windows 11 Pro
 
-Use the completed infrastructure to simulate realistic Help Desk tickets.
+The lab environment includes:
 
-This chapter converts the infrastructure project into practical IT Support experience.
+- Hyper-V virtual networking
+- Windows Server and Windows 11 virtual machines
+- Stable network addressing
+- Network connectivity between the host and virtual machines
+- Remote administration access
 
-The emphasis is not simply configuring technology, but diagnosing and resolving user problems.
+**DC01** provides the Windows Server infrastructure for the lab.
 
----
+**CLIENT01** is prepared for traditional Active Directory domain administration and workstation management.
 
-## 7.1 User Lifecycle
+**CLIENT02** is created as a separate Windows 11 workstation and reserved for later Microsoft Entra ID and Intune endpoint-management exercises.
 
-Simulate employee onboarding.
+At this stage, the purpose is to establish the virtual infrastructure. Domain membership and higher-level enterprise services are configured in later stages of the project.
 
-Example workflow:
+[**View Hyper-V Lab Environment Documentation**](./docs/1.hyperv-lab-environment/README.md)
 
-```text
-New Employee
-      ↓
-Create AD Account
-      ↓
-Assign Department / OU
-      ↓
-Add Security Groups
-      ↓
-Provide File Access
-      ↓
-Microsoft 365 License
-      ↓
-Verify Login and Services
-```
+------
 
-Also simulate employee offboarding:
+# **3. Active Directory**
 
-- Disable account
-- Remove group access
-- Revoke access
-- Remove or adjust licensing
-- Document account status
+This stage builds the core Windows domain environment.
 
----
+Active Directory Domain Services is installed on **DC01**, which is promoted to the Domain Controller for the **corp.lab** domain.
 
-## 7.2 Active Directory Support Cases
+A Northstar organizational structure is created using Organizational Units for users and computers, together with departmental Security Groups.
 
-Practice common tickets such as:
+Representative users are created for IT, HR, Finance, and General departments.
 
-- User cannot log into the domain
-- Forgotten password
-- Locked account
-- Incorrect group membership
-- User cannot access a company resource
+In this stage, **CLIENT01** is configured to use **DC01** as its DNS server and is joined to the **corp.lab** Active Directory domain.
 
----
+The CLIENT01 computer object is then organized under the Northstar workstation OU.
 
-## 7.3 DNS and Network Support Cases
+A regular domain user, **CORP\alice.johnson**, is used to verify domain authentication and workstation access.
 
-Practice:
+The lab also includes a Remote Desktop authorization troubleshooting scenario in which local domain login succeeds but RDP access initially fails because the regular domain user does not have Remote Desktop logon permission.
 
-- Client cannot resolve internal hostname
-- Incorrect DNS configuration
-- DHCP/address problems
-- Connectivity troubleshooting
-- `ipconfig`
-- `ping`
-- `nslookup`
+**CLIENT02 is intentionally not joined to the on-premises Active Directory domain at this stage.** It remains available for later Microsoft Entra ID and Intune exercises.
 
----
+This stage establishes the identity and centralized administration foundation used throughout the rest of the project.
 
-## 7.4 Group Policy Support Cases
+[**View Active Directory Documentation**](./docs/2.active-directory/README.md)
 
-Simulate:
+## **3. DNS and DHCP Configuration**
 
-- GPO does not apply
-- User receives incorrect policy
-- Computer is placed in the wrong OU
-- Policy has not refreshed
+Configured DNS and DHCP services on **DC01** to provide name resolution and centralized network configuration for the `corp.lab` domain.
 
-Use tools such as:
+### **DNS Configuration**
 
-```text
-gpupdate
-gpresult
-```
+- Verified forward DNS records for **DC01** and **CLIENT01**
+- Tested forward name resolution using `nslookup`
+- Created a reverse lookup zone for the `192.168.88.0/24` network
+- Created PTR records for DC01 and CLIENT01
+- Verified reverse DNS resolution using `nslookup`
 
-to diagnose the problem.
 
----
 
-## 7.5 File Permission Support Cases
+### **DHCP Configuration**
 
-Simulate:
+- Installed the DHCP Server role on DC01
+- Authorized DC01 as a DHCP server in Active Directory
+- Created and activated the **Corp LAN** DHCP scope
+- Configured the address pool `192.168.88.100–192.168.88.200`
+- Configured the default gateway as `192.168.88.1`
+- Configured DC01 (`192.168.88.12`) as the DNS server
+- Configured `corp.lab` as the DNS domain
 
-- User cannot access department share
-- Incorrect security group membership
-- NTFS permission problem
-- Share permission problem
-
-Determine whether the failure occurs at:
-
-```text
-User
-  ↓
-Group Membership
-  ↓
-Share Permission
-  ↓
-NTFS Permission
-  ↓
-Resource
-```
-
----
-
-## 7.6 Microsoft 365 / Entra Support Cases
-
-Practice:
-
-- User cannot access Microsoft 365
-- Missing license
-- MFA issue
-- Group membership not synchronized
-- Synced user problem
-- Cloud account vs. on-premises account troubleshooting
-
----
-
-## 7.7 Intune Support Cases
-
-Practice:
-
-- Device does not enroll
-- Configuration profile does not apply
-- Compliance policy does not apply
-- Application deployment fails
-- Device does not appear correctly in Intune
-
----
-
-# Final Architecture
-
-When all seven chapters are complete, the lab should represent the following environment:
-
-```text
-                     NORTHSTAR TECHNOLOGIES
-                              │
-          ┌───────────────────┴────────────────────┐
-          │                                        │
-   ON-PREMISES                                MICROSOFT CLOUD
-          │                                        │
-        DC01                                Microsoft Entra ID
- Windows Server 2022                               │
-          │                                  Microsoft 365
-          ├── Active Directory                     │
-          ├── DNS                                  │
-          ├── DHCP                               Intune
-          ├── Group Policy                         │
-          └── File Server                          │
-          │                                        │
-          │                                        │
-      CLIENT01                                 CLIENT02
- Windows 11 Pro                              Windows 11 Pro
- Domain Joined                               Entra Joined
- GPO Managed                                 Intune Managed
-          │                                        │
-          └──────── Microsoft Entra Connect ───────┘
-                    Identity Synchronization
-```
-
----
-
-# Project Completion Criteria
-
-The project is complete when I can independently demonstrate and explain:
-
-1. How a Windows domain is built and administered.
-2. How users, groups, computers, and OUs are managed in Active Directory.
-3. How DNS and DHCP support a Windows enterprise environment.
-4. How Group Policy centrally manages Windows clients.
-5. How NTFS and Share permissions control company file access.
-6. How an on-premises Windows client joins and operates in a domain.
-7. How Active Directory identities can integrate with Microsoft Entra ID.
-8. How Microsoft 365 users, licenses, MFA, and basic services are administered.
-9. How Windows devices can be Entra joined and managed through Intune.
-10. How to diagnose and resolve common Help Desk problems across these systems.
-
-The final goal is not simply to say that these technologies were studied.
-
-The final goal is to be able to say:
-
-> **I built the environment, configured the services, connected the clients, intentionally created common support problems, diagnosed them, and fixed them.**
+[View DNS and DHCP Configuration →](./docs/3.dns-dhcp/README.md)
