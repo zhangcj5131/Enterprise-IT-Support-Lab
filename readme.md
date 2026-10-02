@@ -108,7 +108,7 @@ The lab environment includes:
 
 At this stage, the purpose is to establish the virtual infrastructure. Domain membership and higher-level enterprise services are configured in later stages of the project.
 
-[**View Hyper-V Lab Environment Documentation**](./docs/1.hyperv-lab-environment/README.md)
+[**View Hyper-V Lab Environment Documentation**](./docs/1.hyperv-lab-environment/readme.md)
 
 ------
 
@@ -134,7 +134,7 @@ The lab also includes a Remote Desktop authorization troubleshooting scenario in
 
 This stage establishes the identity and centralized administration foundation used throughout the rest of the project.
 
-[**View Active Directory Documentation**](./docs/2.active-directory/README.md)
+[**View Active Directory Documentation**](./docs/2.active-directory/readme.md)
 
 ## **3. DNS and DHCP Configuration**
 
@@ -160,4 +160,4 @@ Configured DNS and DHCP services on **DC01** to provide name resolution and cent
 - Configured DC01 (`192.168.88.12`) as the DNS server
 - Configured `corp.lab` as the DNS domain
 
-[View DNS and DHCP Configuration →](./docs/3.dns-dhcp/README.md)
+[View DNS and DHCP Configuration →](./docs/3.dns-dhcp/readme.md)
