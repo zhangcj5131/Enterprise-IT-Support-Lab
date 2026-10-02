@@ -136,7 +136,9 @@ This stage establishes the identity and centralized administration foundation us
 
 [**View Active Directory Documentation**](./docs/2.active-directory/readme.md)
 
-## **3. DNS and DHCP Configuration**
+
+
+# **4.DNS and DHCP Configuration**
 
 Configured DNS and DHCP services on **DC01** to provide name resolution and centralized network configuration for the `corp.lab` domain.
 
@@ -161,3 +163,53 @@ Configured DNS and DHCP services on **DC01** to provide name resolution and cent
 - Configured `corp.lab` as the DNS domain
 
 [View DNS and DHCP Configuration →](./docs/3.dns-dhcp/readme.md)
+
+
+
+# **5.. Group Policy Configuration**
+
+Group Policy was configured in the **corp.lab** domain to demonstrate centralized management of both domain users and domain computers.
+
+Two Group Policy Objects were deployed:
+
+- **IT User Policy** — applied to the IT OU to restrict user access to Control Panel and PC settings.
+- **Workstation Security Policy** — applied to the Workstations OU to enforce Windows Defender Firewall settings on domain workstations.
+
+The policies were successfully applied and verified using **Alice Johnson** and **CLIENT01**, demonstrating both User Configuration and Computer Configuration through Active Directory Group Policy.
+
+[View Group Policy Configuration →](docs/4.group-policy/readme.md)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
