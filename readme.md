@@ -181,7 +181,15 @@ The policies were successfully applied and verified using **Alice Johnson** and 
 
 
 
+## **6. File Sharing and Permissions**
 
+A departmental file share was configured on **DC01** to demonstrate centralized file access and permission management in a Windows domain environment.
+
+NTFS permissions were configured to grant the **Finance-Users** security group appropriate access to the Finance folder, while Share Permissions were configured to control access to the folder over the network.
+
+The shared folder was then mapped as the **F:** network drive on CLIENT01, demonstrating how authorized domain users can access shared enterprise resources from a Windows workstation.
+
+[View File Sharing and Permissions Configuration →](docs/5.file-server-permissions/readme.md)
 
 
 
