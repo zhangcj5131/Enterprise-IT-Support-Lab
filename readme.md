@@ -181,7 +181,7 @@ The policies were successfully applied and verified using **Alice Johnson** and 
 
 
 
-## **6. File Sharing and Permissions**
+# **6. File Sharing and Permissions**
 
 A departmental file share was configured on **DC01** to demonstrate centralized file access and permission management in a Windows domain environment.
 
@@ -193,7 +193,20 @@ The shared folder was then mapped as the **F:** network drive on CLIENT01, demon
 
 
 
+# 7. Microsoft Entra ID and Microsoft 365
 
+After completing the on-premises Active Directory environment, the lab was extended to Microsoft Entra ID and Microsoft 365 to introduce cloud-based identity and service management.
+
+The following tasks were completed:
+
+- Created corresponding cloud user identities in Microsoft Entra ID
+- Created security groups and organized users based on their departments
+- Assigned Microsoft 365 Business Premium licenses to the cloud users
+- Verified successful license activation and Microsoft 365 service access using a standard user account
+
+This establishes the cloud identity environment that will be used for the following Microsoft 365, security, device management, and Intune configurations.
+
+[View Microsoft Entra ID and Microsoft 365 Configuration](docs/6.entra-id-microsoft-365/readme.md)
 
 
 
