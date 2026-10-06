@@ -210,7 +210,7 @@ This establishes the cloud identity environment that will be used for the follow
 
 
 
-## **8. Hybrid Identity — Microsoft Entra Connect**
+# **8. Hybrid Identity — Microsoft Entra Connect**
 
 Configured **Microsoft Entra Connect Sync** to integrate the on-premises **corp.lab Active Directory** with Microsoft Entra ID.
 
@@ -222,7 +222,22 @@ This lab demonstrates the basic implementation of a **hybrid identity environmen
 
 
 
+# 9. Microsoft Intune – Device Management and Compliance
 
+Configured Microsoft Intune to manage **CLIENT02**, including device enrollment, centralized policy deployment, and device compliance monitoring.
+
+Key tasks:
+- Enrolled **CLIENT02** into Microsoft Intune
+- Verified device management and synchronization
+- Created and assigned an Intune configuration policy
+- Restricted Control Panel access for a test user
+- Created a device security group for compliance testing
+- Created a firewall compliance policy
+- Simulated a noncompliant device by disabling Windows Firewall
+- Synchronized CLIENT02 with Intune
+- Verified that Intune detected CLIENT02 as **Noncompliant**
+
+[View detailed Intune lab notes](docs/8.intune-endpoint-management/readme.md)
 
 
 
