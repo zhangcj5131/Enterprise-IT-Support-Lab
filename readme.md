@@ -210,7 +210,15 @@ This establishes the cloud identity environment that will be used for the follow
 
 
 
+## **8. Hybrid Identity — Microsoft Entra Connect**
 
+Configured **Microsoft Entra Connect Sync** to integrate the on-premises **corp.lab Active Directory** with Microsoft Entra ID.
+
+The on-premises user UPNs were aligned with the Microsoft Entra ID sign-in domain, and selected Active Directory users were synchronized to the cloud. Successful synchronization was verified in Microsoft Entra ID with the users showing **On-premises sync = Yes**.
+
+This lab demonstrates the basic implementation of a **hybrid identity environment**, allowing identities managed in on-premises Active Directory to be provisioned and used in Microsoft cloud services.
+
+[**View Hybrid Identity Lab →**](./docs/7.entra-connect-identity-sync/readme.md)
 
 
 
