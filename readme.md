@@ -241,7 +241,26 @@ Key tasks:
 
 
 
+# 10.User Lifecycle Management
 
+Simulated a complete employee lifecycle in a hybrid Active Directory and Microsoft Entra ID environment, covering common Help Desk and IT Support tasks from onboarding to offboarding.
+
+The workflow included:
+
+- Created a new employee account in on-premises Active Directory
+- Assigned the user to the appropriate departmental security group
+- Synchronized the user and group membership to Microsoft Entra ID
+- Assigned a Microsoft 365 Business Premium license
+- Verified the synchronized cloud identity and group membership
+- Configured and tested an account lockout policy
+- Simulated a locked user account and performed account recovery
+- Reset the user's password and required a password change at next sign-in
+- Simulated employee offboarding by disabling the account and removing role-based group access
+- Revoked existing cloud sessions and reclaimed the Microsoft 365 license
+
+This lab demonstrates a practical **Joiner → Support → Leaver** workflow across on-premises Active Directory and Microsoft cloud services.
+
+**[View the detailed User Lifecycle Management lab →](docs/9.user-lifecycle-help-desk/readme.md)**
 
 
 
