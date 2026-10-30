@@ -19,6 +19,7 @@ This project demonstrates hands-on experience with both traditional Windows ente
 
 | Section                                                    | Detailed Documentation                                       |
 | ---------------------------------------------------------- | ------------------------------------------------------------ |
+| **0. ServiceNow — ITSM & Help Desk Lab **                  | [View Documentation →](./docs/0.ServiceNow/readme.md)        |
 | **2. Hyper-V Lab Environment**                             | [View Documentation →](./docs/1.hyperv-lab-environment/readme.md) |
 | **3. Active Directory**                                    | [View Documentation →](./docs/2.active-directory/readme.md)  |
 | **4. DNS and DHCP Configuration**                          | [View Documentation →](./docs/3.dns-dhcp/readme.md)          |
@@ -30,7 +31,7 @@ This project demonstrates hands-on experience with both traditional Windows ente
 | **10. User Lifecycle Management**                          | [View Documentation →](docs/9.user-lifecycle-help-desk/readme.md) |
 | **11. Troubleshooting Scenarios**                          | [**View Troubleshooting →**](docs/10.troubleshooting-documentation/readme.md) |
 
----
+
 
 # 1. Project Overview
 
@@ -244,6 +245,16 @@ This lab demonstrates a practical **Joiner → Support → Leaver** workflow acr
 [**View Detailed User Lifecycle Management Lab →**](docs/9.user-lifecycle-help-desk/readme.md)
 
 ---
+
+
+
+
+
+
+
+
+
+
 
 # 11. Troubleshooting Scenarios
 
