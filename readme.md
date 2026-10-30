@@ -19,7 +19,7 @@ This project demonstrates hands-on experience with both traditional Windows ente
 
 | Section                                                    | Detailed Documentation                                       |
 | ---------------------------------------------------------- | ------------------------------------------------------------ |
-| **0. ServiceNow — ITSM & Help Desk Lab **                  | [View Documentation →](./docs/0.ServiceNow/readme.md)        |
+| **0. ServiceNow — ITSM & Help Desk Lab**                   | [View Documentation →](./docs/0.ServiceNow/readme.md)        |
 | **2. Hyper-V Lab Environment**                             | [View Documentation →](./docs/1.hyperv-lab-environment/readme.md) |
 | **3. Active Directory**                                    | [View Documentation →](./docs/2.active-directory/readme.md)  |
 | **4. DNS and DHCP Configuration**                          | [View Documentation →](./docs/3.dns-dhcp/readme.md)          |
