@@ -13,11 +13,11 @@ This project demonstrates hands-on experience with both traditional Windows ente
 
 [**View Troubleshooting Scenarios →**](docs/10.troubleshooting-documentation/readme.md)
 
----
+
 
 ## Quick Navigation
 
-| Section                                                    | Detailed Documentation                                       |
+| **Section**                                                | **Detailed Documentation**                                   |
 | ---------------------------------------------------------- | ------------------------------------------------------------ |
 | **0. ServiceNow — ITSM & Help Desk Lab**                   | [View Documentation →](./docs/0.ServiceNow/readme.md)        |
 | **2. Hyper-V Lab Environment**                             | [View Documentation →](./docs/1.hyperv-lab-environment/readme.md) |
@@ -26,10 +26,16 @@ This project demonstrates hands-on experience with both traditional Windows ente
 | **5. Group Policy Configuration**                          | [View Documentation →](docs/4.group-policy/readme.md)        |
 | **6. File Sharing and Permissions**                        | [View Documentation →](docs/5.file-server-permissions/readme.md) |
 | **7. Microsoft Entra ID and Microsoft 365**                | [View Documentation →](docs/6.entra-id-microsoft-365/readme.md) |
-| **8. Hybrid Identity — Microsoft Entra Connect**           | [View Documentation →](./docs/7.entra-connect-identity-sync/readme.md) |
+| **8. Hybrid Identity — Microsoft Entra Connect**           | [View Documentation →](docs/7.entra-connect-identity-sync/readme.md) |
 | **9. Microsoft Intune — Device Management and Compliance** | [View Documentation →](docs/8.intune-endpoint-management/readme.md) |
 | **10. User Lifecycle Management**                          | [View Documentation →](docs/9.user-lifecycle-help-desk/readme.md) |
 | **11. Troubleshooting Scenarios**                          | [**View Troubleshooting →**](docs/10.troubleshooting-documentation/readme.md) |
+| **12. Windows Imaging and Deployment**                     | [View Documentation →](docs/11.windows-imaging/readme.md)    |
+| **13. Cisco Firewall Configuration and Testing**           | [View Documentation →](./docs/12.enterprise-firewall/readme.md) |
+
+
+
+
 
 
 
@@ -277,3 +283,44 @@ For detailed troubleshooting steps, root causes, resolutions, and verification r
 
 [**View Detailed Troubleshooting Scenarios →**](docs/10.troubleshooting-documentation/readme.md)
 
+
+
+
+
+# 12. Windows Imaging and Deployment
+
+This section demonstrates a hands-on **Windows 11 imaging and deployment workflow** using Hyper-V, Sysprep, DISM, and BCDBoot.
+
+The lab covers preparing a Windows reference system, capturing it as a WIM image, deploying the image back to a formatted system partition, and rebuilding UEFI boot files.
+
+The workflow includes:
+
+1. **Reference System Preparation** — Configure virtual disks and validate the Windows environment.
+2. **Sysprep Generalization** — Prepare Windows for imaging using Sysprep.
+3. **Image Capture** — Capture the Windows installation into a WIM file using DISM.
+4. **Image Deployment** — Apply the captured WIM image to the target partition.
+5. **Boot Configuration** — Rebuild UEFI boot files using BCDBoot.
+
+For detailed commands, screenshots, and verification results, see:
+
+**[View Detailed Windows Imaging Process →](docs/11.windows-imaging/readme.md)**
+
+
+
+# 13. Cisco Firewall Configuration and Testing
+
+This section demonstrates a hands-on **Cisco ASAv firewall lab** using Cisco Modeling Labs (CML) and Hyper-V.
+
+The lab covers placing a client and a server on separate subnets, routing traffic through the firewall, and verifying that an access control list (ACL) allows one TCP port and blocks another.
+
+The workflow includes:
+
+1. **Lab Environment Setup** — Install CML on Hyper-V and build a topology with a client, an ASAv firewall, and a server.
+2. **Network Configuration** — Configure IP addresses and use the ASAv as the default gateway for both subnets.
+3. **Baseline Testing** — Start two TCP echo services with Netcat and verify that the client can reach ports 8080 and 8081.
+4. **Firewall Rule Configuration** — Apply an inbound ACL on the client-facing interface to allow TCP port 8080 and block TCP port 8081.
+5. **Policy Verification** — Repeat both connection tests and check the ACL hit counts to confirm that the firewall blocked traffic to port 8081.
+
+For the lab topology, configuration details, screenshots, and verification results, see:
+
+**[View Detailed Cisco Firewall Lab →](./docs/12.enterprise-firewall/readme.md)**
