@@ -12,33 +12,11 @@ My Windows 11 Pro VM had two virtual hard disks. The 125 GB Windows partition wa
 
 ![image-20261116141202209](./readme.assets/image-20261116141202209.png)
 
-### 1.3 Checks Before Running Sysprep
 
-I checked BitLocker on the Windows partition. The output showed that C: was fully decrypted and BitLocker protection was off.
 
-```cmd
-manage-bde -status C:
-```
 
-![image-20261116155246573](./readme.assets/image-20261116155246573.png)
 
-I also checked Reserved Storage, which is disk space Windows sets aside for updates and other system operations. It was enabled.
-
-```cmd
-DISM /Online /Get-ReservedStorageState
-```
-
-![image-20261116155258231](./readme.assets/image-20261116155258231.png)
-
-I had previously encountered a Sysprep validation error (0x800F0975) in this lab, so I disabled Reserved Storage before trying again. This was a troubleshooting step for this lab.
-
-```cmd
-DISM /Online /Set-ReservedStorageState /State:Disabled
-```
-
-![image-20261116155311782](./readme.assets/image-20261116155311782.png)
-
-### 1.4 Prepare the Reference System with Sysprep
+### 1.3 Prepare the Reference System with Sysprep
 
 I ran Sysprep to remove machine-specific information, prepare Windows to show its first-run setup after deployment, and shut down the VM.
 
